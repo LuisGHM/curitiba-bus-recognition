@@ -15,6 +15,21 @@ def load_model(config_path):
         logging.error(f"Error loading model: {e}")
         raise
 
+def get_augmentation_settings():
+    return {
+        'flipud': 0.5,  # 50% chance of vertical flip
+        'fliplr': 0.5,  # 50% chance of horizontal flip
+        'hsv_h': 0.015,  # Hue adjustment
+        'hsv_s': 0.7,  # Saturation adjustment
+        'hsv_v': 0.4,  # Exposure adjustment
+        'translate': 0.1,  # Random translation
+        'scale': 0.5,  # Random scaling
+        'shear': 0.0,  # No shear
+        'perspective': 0.0,  # No perspective
+        'erasing': 0.4,  # Random erasing
+        'mosaic': 1.0,  # Always use mosaic augmentation,
+    }
+
 def get_training_params():
     return {
         'epochs': 1000,  # Number of training epochs
@@ -31,9 +46,11 @@ def main():
     data_config_path = "config.yaml"
 
     model = load_model(model_config_path)
+
+    augmentation = get_augmentation_settings()
     training_params = get_training_params()
 
-    training_config = {**training_params}
+    training_config = {**training_params, **augmentation}
 
     try:
         model.train(data=data_config_path, **training_config)
