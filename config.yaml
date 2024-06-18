@@ -1,0 +1,7 @@
+path: C:\Users\lgmar\yolo-test\data  # dataset root dir
+train: train  # train images (relative to 'path')
+val: val  # val images (relative to 'path')
+
+# Classes
+names:
+  0: Curitiba tourism bus
