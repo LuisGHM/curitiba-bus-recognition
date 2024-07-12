@@ -32,8 +32,8 @@ venv\Scripts\activate.ps1
 No MacOS/Linux:
   ```sh
 source venv/bin/activate
-Instale as dependências:
   ```
+Instale as dependências:
 
 ```sh
 pip install -r requirements.txt
